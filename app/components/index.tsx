@@ -5,6 +5,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import produce, { setAutoFreeze } from 'immer'
 import { useBoolean, useGetState } from 'ahooks'
+import { Helmet } from 'react-helmet'
 import useConversation from '@/hooks/use-conversation'
 import Toast from '@/app/components/base/toast'
 import Sidebar from '@/app/components/sidebar'
@@ -23,7 +24,6 @@ import { API_KEY, APP_ID, APP_INFO, isShowPrompt, promptTemplate } from '@/confi
 import type { Annotation as AnnotationType } from '@/types/log'
 import { addFileInfos, sortAgentSorts } from '@/utils/tools'
 import GoogleAnalytics from '@/app/components/GoogleAnalytics'
-import { Helmet } from 'react-helmet'
 
 const Main: FC = () => {
   const { t } = useTranslation()
@@ -612,71 +612,71 @@ const Main: FC = () => {
     return <Loading type='app' />
 
   return (
-
-    <Helmet>
-    <meta property="og:image" content="https://gammamygenerator.aicu.ai/coverart.png" />
-    <meta property="og:image:width" content="1082" />
-    <meta property="og:image:height" content="566" />
-    <meta property="og:image:type" content="image/png" />
-    {/* 他のOGPタグも必要に応じて追加 */}
-    <meta property="og:title" content={APP_INFO.title} />
-    <meta property="og:description" content="Your app description here" />
-    <meta property="og:url" content="Your app URL here" />
-  </Helmet>    
-    <GoogleAnalytics>  {/* GoogleAnalytics コンポーネントで全体をラップ */}
-      <div className='bg-gray-100'>
-        <Header
-          title={APP_INFO.title}
-          isMobile={isMobile}
-          onShowSideBar={showSidebar}
-          onCreateNewChat={() => handleConversationIdChange('-1')}
-        />
-        <div className="flex rounded-t-2xl bg-white overflow-hidden">
-          {/* sidebar */}
-          {!isMobile && renderSidebar()}
-          {isMobile && isShowSidebar && (
-            <div className='fixed inset-0 z-50'
-              style={{ backgroundColor: 'rgba(35, 56, 118, 0.2)' }}
-              onClick={hideSidebar}
-            >
-              <div className='inline-block' onClick={e => e.stopPropagation()}>
-                {renderSidebar()}
+    <>
+      <Helmet>
+        <meta property="og:image" content="https://gammamygenerator.aicu.ai/coverart.png" />
+        <meta property="og:image:width" content="1082" />
+        <meta property="og:image:height" content="566" />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:title" content={APP_INFO.title} />
+        <meta property="og:description" content="Your app description here" />
+        <meta property="og:url" content="Your app URL here" />
+      </Helmet>
+      <GoogleAnalytics>  {/* GoogleAnalytics コンポーネントで全体をラップ */}
+        <div className='bg-gray-100'>
+          <Header
+            title={APP_INFO.title}
+            isMobile={isMobile}
+            onShowSideBar={showSidebar}
+            onCreateNewChat={() => handleConversationIdChange('-1')}
+          />
+          <div className="flex rounded-t-2xl bg-white overflow-hidden">
+            {/* sidebar */}
+            {!isMobile && renderSidebar()}
+            {isMobile && isShowSidebar && (
+              <div className='fixed inset-0 z-50'
+                style={{ backgroundColor: 'rgba(35, 56, 118, 0.2)' }}
+                onClick={hideSidebar}
+              >
+                <div className='inline-block' onClick={e => e.stopPropagation()}>
+                  {renderSidebar()}
+                </div>
               </div>
-            </div>
-          )}
-          {/* main */}
-          <div className='flex-grow flex flex-col h-[calc(100vh_-_3rem)] overflow-y-auto'>
-            <ConfigSence
-              conversationName={conversationName}
-              hasSetInputs={hasSetInputs}
-              isPublicVersion={isShowPrompt}
-              siteInfo={APP_INFO}
-              promptConfig={promptConfig}
-              onStartChat={handleStartChat}
-              canEditInputs={canEditInputs}
-              savedInputs={currInputs as Record<string, any>}
-              onInputsChange={setCurrInputs}
-            ></ConfigSence>
+            )}
+            {/* main */}
+            <div className='flex-grow flex flex-col h-[calc(100vh_-_3rem)] overflow-y-auto'>
+              <ConfigSence
+                conversationName={conversationName}
+                hasSetInputs={hasSetInputs}
+                isPublicVersion={isShowPrompt}
+                siteInfo={APP_INFO}
+                promptConfig={promptConfig}
+                onStartChat={handleStartChat}
+                canEditInputs={canEditInputs}
+                savedInputs={currInputs as Record<string, any>}
+                onInputsChange={setCurrInputs}
+              ></ConfigSence>
 
-            {
-              hasSetInputs && (
-                <div className='relative grow h-[200px] pc:w-[794px] max-w-full mobile:w-full pb-[66px] mx-auto mb-3.5 overflow-hidden'>
-                  <div className='h-full overflow-y-auto' ref={chatListDomRef}>
-                    <Chat
-                      chatList={chatList}
-                      onSend={handleSend}
-                      onFeedback={handleFeedback}
-                      isResponding={isResponding}
-                      checkCanSend={checkCanSend}
-                      visionConfig={visionConfig}
-                    />
-                  </div>
-                </div>)
-            }
+              {
+                hasSetInputs && (
+                  <div className='relative grow h-[200px] pc:w-[794px] max-w-full mobile:w-full pb-[66px] mx-auto mb-3.5 overflow-hidden'>
+                    <div className='h-full overflow-y-auto' ref={chatListDomRef}>
+                      <Chat
+                        chatList={chatList}
+                        onSend={handleSend}
+                        onFeedback={handleFeedback}
+                        isResponding={isResponding}
+                        checkCanSend={checkCanSend}
+                        visionConfig={visionConfig}
+                      />
+                    </div>
+                  </div>)
+              }
+            </div>
           </div>
         </div>
-      </div>
-    </GoogleAnalytics>
+      </GoogleAnalytics>
+    </>
   )
 }
 
