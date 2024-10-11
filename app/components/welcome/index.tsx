@@ -204,6 +204,7 @@ const Welcome: FC<IWelcomeProps> = ({
           className='mt-3 mobile:ml-0 tablet:ml-[128px]'
           onClick={handleChat}
         />
+        例：「踊っているガンマミィ画像を生成して」「photo realistic 3d illustration of gammamy, dancing」
       </TemplateVarPanel>
     )
   }
