@@ -614,6 +614,7 @@ const Main: FC = () => {
   return (
     <>
       <Helmet>
+        <meta name="description" content="#ガンマミィジェネレーター かわいいガンマミィを作れます。AIを使って自分だけのオリジナルガンマミィを生成しよう！" />
         <meta property="og:image" content="https://gammamygenerator.aicu.ai/coverart.png" />
         <meta property="og:image:width" content="1082" />
         <meta property="og:image:height" content="566" />
