@@ -619,8 +619,8 @@ const Main: FC = () => {
         <meta property="og:image:height" content="566" />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:title" content={APP_INFO.title} />
-        <meta property="og:description" content="Your app description here" />
-        <meta property="og:url" content="Your app URL here" />
+        <meta property="og:description" content="#ガンマミィジェネレーター かわいいガンマミィを作れます" />
+        <meta property="og:url" content="https://gammamygenerator.aicu.ai/" />
       </Helmet>
       <GoogleAnalytics>  {/* GoogleAnalytics コンポーネントで全体をラップ */}
         <div className='bg-gray-100'>
