@@ -23,6 +23,7 @@ import { API_KEY, APP_ID, APP_INFO, isShowPrompt, promptTemplate } from '@/confi
 import type { Annotation as AnnotationType } from '@/types/log'
 import { addFileInfos, sortAgentSorts } from '@/utils/tools'
 import GoogleAnalytics from '@/app/components/GoogleAnalytics'
+import { Helmet } from 'react-helmet'
 
 const Main: FC = () => {
   const { t } = useTranslation()
@@ -611,6 +612,17 @@ const Main: FC = () => {
     return <Loading type='app' />
 
   return (
+
+    <Helmet>
+    <meta property="og:image" content="https://gammamygenerator.aicu.ai/coverart.png" />
+    <meta property="og:image:width" content="1082" />
+    <meta property="og:image:height" content="566" />
+    <meta property="og:image:type" content="image/png" />
+    {/* 他のOGPタグも必要に応じて追加 */}
+    <meta property="og:title" content={APP_INFO.title} />
+    <meta property="og:description" content="Your app description here" />
+    <meta property="og:url" content="Your app URL here" />
+  </Helmet>    
     <GoogleAnalytics>  {/* GoogleAnalytics コンポーネントで全体をラップ */}
       <div className='bg-gray-100'>
         <Header
