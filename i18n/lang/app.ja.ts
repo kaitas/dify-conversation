@@ -15,7 +15,7 @@ const translation = {
     configStatusDes: '開始前に、会話設定を変更できます',
     configDisabled:
       '前回のセッション設定がこのセッションで使用されています。',
-    startChat: '「踊っているガンマミィ画像を生成して」！',
+    startChat: 'やってみる！',
     privacyPolicyLeft:
       'ご利用前に、',
     privacyPolicyMiddle:
