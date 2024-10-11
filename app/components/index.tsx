@@ -22,6 +22,7 @@ import AppUnavailable from '@/app/components/app-unavailable'
 import { API_KEY, APP_ID, APP_INFO, isShowPrompt, promptTemplate } from '@/config'
 import type { Annotation as AnnotationType } from '@/types/log'
 import { addFileInfos, sortAgentSorts } from '@/utils/tools'
+import GoogleAnalytics from '@/app/components/GoogleAnalytics'
 
 const Main: FC = () => {
   const { t } = useTranslation()
@@ -610,58 +611,60 @@ const Main: FC = () => {
     return <Loading type='app' />
 
   return (
-    <div className='bg-gray-100'>
-      <Header
-        title={APP_INFO.title}
-        isMobile={isMobile}
-        onShowSideBar={showSidebar}
-        onCreateNewChat={() => handleConversationIdChange('-1')}
-      />
-      <div className="flex rounded-t-2xl bg-white overflow-hidden">
-        {/* sidebar */}
-        {!isMobile && renderSidebar()}
-        {isMobile && isShowSidebar && (
-          <div className='fixed inset-0 z-50'
-            style={{ backgroundColor: 'rgba(35, 56, 118, 0.2)' }}
-            onClick={hideSidebar}
-          >
-            <div className='inline-block' onClick={e => e.stopPropagation()}>
-              {renderSidebar()}
+    <GoogleAnalytics>  {/* GoogleAnalytics コンポーネントで全体をラップ */}
+      <div className='bg-gray-100'>
+        <Header
+          title={APP_INFO.title}
+          isMobile={isMobile}
+          onShowSideBar={showSidebar}
+          onCreateNewChat={() => handleConversationIdChange('-1')}
+        />
+        <div className="flex rounded-t-2xl bg-white overflow-hidden">
+          {/* sidebar */}
+          {!isMobile && renderSidebar()}
+          {isMobile && isShowSidebar && (
+            <div className='fixed inset-0 z-50'
+              style={{ backgroundColor: 'rgba(35, 56, 118, 0.2)' }}
+              onClick={hideSidebar}
+            >
+              <div className='inline-block' onClick={e => e.stopPropagation()}>
+                {renderSidebar()}
+              </div>
             </div>
-          </div>
-        )}
-        {/* main */}
-        <div className='flex-grow flex flex-col h-[calc(100vh_-_3rem)] overflow-y-auto'>
-          <ConfigSence
-            conversationName={conversationName}
-            hasSetInputs={hasSetInputs}
-            isPublicVersion={isShowPrompt}
-            siteInfo={APP_INFO}
-            promptConfig={promptConfig}
-            onStartChat={handleStartChat}
-            canEditInputs={canEditInputs}
-            savedInputs={currInputs as Record<string, any>}
-            onInputsChange={setCurrInputs}
-          ></ConfigSence>
+          )}
+          {/* main */}
+          <div className='flex-grow flex flex-col h-[calc(100vh_-_3rem)] overflow-y-auto'>
+            <ConfigSence
+              conversationName={conversationName}
+              hasSetInputs={hasSetInputs}
+              isPublicVersion={isShowPrompt}
+              siteInfo={APP_INFO}
+              promptConfig={promptConfig}
+              onStartChat={handleStartChat}
+              canEditInputs={canEditInputs}
+              savedInputs={currInputs as Record<string, any>}
+              onInputsChange={setCurrInputs}
+            ></ConfigSence>
 
-          {
-            hasSetInputs && (
-              <div className='relative grow h-[200px] pc:w-[794px] max-w-full mobile:w-full pb-[66px] mx-auto mb-3.5 overflow-hidden'>
-                <div className='h-full overflow-y-auto' ref={chatListDomRef}>
-                  <Chat
-                    chatList={chatList}
-                    onSend={handleSend}
-                    onFeedback={handleFeedback}
-                    isResponding={isResponding}
-                    checkCanSend={checkCanSend}
-                    visionConfig={visionConfig}
-                  />
-                </div>
-              </div>)
-          }
+            {
+              hasSetInputs && (
+                <div className='relative grow h-[200px] pc:w-[794px] max-w-full mobile:w-full pb-[66px] mx-auto mb-3.5 overflow-hidden'>
+                  <div className='h-full overflow-y-auto' ref={chatListDomRef}>
+                    <Chat
+                      chatList={chatList}
+                      onSend={handleSend}
+                      onFeedback={handleFeedback}
+                      isResponding={isResponding}
+                      checkCanSend={checkCanSend}
+                      visionConfig={visionConfig}
+                    />
+                  </div>
+                </div>)
+            }
+          </div>
         </div>
       </div>
-    </div>
+    </GoogleAnalytics>
   )
 }
 
