@@ -8,6 +8,7 @@ export type AppIconProps = {
   icon?: string
   background?: string
   className?: string
+  backgroundImageUrl?: string
 }
 
 const AppIcon: FC<AppIconProps> = ({
@@ -15,21 +16,25 @@ const AppIcon: FC<AppIconProps> = ({
   rounded = false,
   background,
   className,
+  backgroundImageUrl,
 }) => {
   return (
-    <span
+    <div
       className={classNames(
-        style.appIcon,
+        style.appIconContainer,
         size !== 'medium' && style[size],
         rounded && style.rounded,
-        className ?? '',
+        className,
       )}
       style={{
-        background,
+        backgroundImage: backgroundImageUrl ? `url(${backgroundImageUrl})` : undefined,
+        backgroundColor: background,
       }}
     >
-      Γ㌏γ
-    </span>
+      <span className={style.appIconText}>
+        Γ㌏γ
+      </span>
+    </div>
   )
 }
 
