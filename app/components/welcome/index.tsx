@@ -173,6 +173,7 @@ const Welcome: FC<IWelcomeProps> = ({
             }
           >
             <ChatBtn onClick={handleChat} />
+            例：「踊っているガンマミィ画像を生成して」「photo realistic 3d illustration of gammamy, dancing」
           </TemplateVarPanel>
         </div>
       )
