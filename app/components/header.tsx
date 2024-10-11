@@ -27,7 +27,7 @@ const Header: FC<IHeaderProps> = ({
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
-        height: '500px', // 背景画像の高さに合わせて調整
+        height: '300px', // 背景画像の高さに合わせて調整
       }}
     >
       {isMobile
