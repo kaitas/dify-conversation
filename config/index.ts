@@ -4,7 +4,7 @@ export const API_KEY = `${process.env.NEXT_PUBLIC_APP_KEY}`
 export const API_URL = `${process.env.NEXT_PUBLIC_API_URL}`
 export const APP_INFO: AppInfo = {
   title: 'ガンマミィ ジェネレーター',
-  description: 'Generate Cute Gammamy pictures!',
+  description: '例：「踊っているガンマミィ画像を生成して」「photo realistic 3d illustration of gammamy, dancing...」',
   copyright: 'BlendAI and AICU Inc.',
   privacy_policy: 'https://corp.aicu.ai/ja/privacy',
   default_language: 'ja',
